@@ -7,7 +7,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float LineSize = 2f;
     [SerializeField] private Transform FirstLinePosition;
 
-    [SerializeField] private float JumpHeight;
+    [SerializeField] private float JumpPower;
+    [SerializeField] private float DashPower;
+
+
     [SerializeField] private float ChangeLineTime;
 
     [Tooltip("Numbering start with 0")]
@@ -15,39 +18,47 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private int lineCount = 3;
 
     private int currentLine;
-    private Coroutine coroutine;
+    private Coroutine moveCoroutine;
 
     public void MoveRight() {
-        if (this.currentLine != lineCount-1) {
-            if (this.coroutine != null) StopCoroutine(this.coroutine);
+        if (this.currentLine != lineCount - 1) {
+            if (this.moveCoroutine != null) StopCoroutine(this.moveCoroutine);
             this.currentLine++;
-            this.coroutine = StartCoroutine(ChangeLine());
+            this.moveCoroutine = StartCoroutine(ChangeLine());
         }
     }
     public void MoveLeft() {
         if (this.currentLine != 0)
         {
-            if (this.coroutine != null) StopCoroutine(this.coroutine);
+            if (this.moveCoroutine != null) StopCoroutine(this.moveCoroutine);
             this.currentLine--;
-            this.coroutine = StartCoroutine(ChangeLine());
+            this.moveCoroutine = StartCoroutine(ChangeLine());
         }
     }
 
     public void Jump() {
-        Debug.Log("Jumped!");
+        this.GetComponent<Rigidbody>().velocity = Vector3.up* this.JumpPower;
+    }
+
+    public void Dash() {
+        this.GetComponent<Rigidbody>().AddForce(Vector3.down * this.DashPower, ForceMode.VelocityChange);
     }
 
     private IEnumerator ChangeLine() {
         float pos = this.transform.position.x;
         float target = this.FirstLinePosition.position.x + this.currentLine * this.LineSize;
+
+        float len = Mathf.Abs(pos - target);
+        float animtime = this.ChangeLineTime * (len / this.LineSize);
+
         float elapsed = 0f;
         while (this.transform.position.x != target) {
             Vector3 p = this.transform.position;
-            p.x = Mathf.Lerp(pos, target, elapsed / this.ChangeLineTime);
+            p.x = Mathf.Lerp(pos, target, elapsed / animtime);
             this.transform.position = p;
             elapsed += Time.deltaTime;
             yield return null;
         }
-        this.coroutine = null;
+        this.moveCoroutine = null;
     }
 }

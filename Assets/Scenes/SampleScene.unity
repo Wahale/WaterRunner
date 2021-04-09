@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 286009640}
   - component: {fileID: 286009639}
   - component: {fileID: 286009638}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,7 +227,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 428330901}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TestSecondLinePosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -593,7 +593,7 @@ GameObject:
   - component: {fileID: 1132803131}
   - component: {fileID: 1132803130}
   - component: {fileID: 1132803129}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -784,7 +784,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1912885402}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TestThirdLinePosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -815,7 +815,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1999681645}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TestFirstLinePosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -849,7 +849,7 @@ GameObject:
   - component: {fileID: 2083156131}
   - component: {fileID: 2083156130}
   - component: {fileID: 2083156129}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -945,7 +945,11 @@ GameObject:
   - component: {fileID: 2118857310}
   - component: {fileID: 2118857309}
   - component: {fileID: 2118857315}
+  - component: {fileID: 2118857320}
+  - component: {fileID: 2118857319}
+  - component: {fileID: 2118857318}
   - component: {fileID: 2118857308}
+  - component: {fileID: 2118857317}
   - component: {fileID: 2118857307}
   - component: {fileID: 2118857314}
   - component: {fileID: 2118857313}
@@ -1032,11 +1036,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LineSize: 5
   FirstLinePosition: {fileID: 1999681645}
-  JumpPower: 0
+  JumpPower: 15
   DashPower: 30
   ChangeLineTime: 0.2
   startLine: 1
   lineCount: 3
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!65 &2118857309
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1312,3 +1319,79 @@ MonoBehaviour:
   IgnoreStartedOverGui: 1
   IgnoreIsOverGui: 0
   RequiredSelectable: {fileID: 0}
+--- !u!114 &2118857317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118857306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1347603256edb54baf8cde30f55208f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  ObstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  WaterLayer:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!114 &2118857318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118857306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 536667bf325e79141842dc93ba05f96c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 2118857320}
+  LeftMoveAnimationName: 
+  RightMoveAnimationName: 
+  JumpAnimationName: 
+  DashAnimationName: 
+  DeathObstacleAnimationName: 
+  DeathWaterAnimationName: 
+--- !u!114 &2118857319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118857306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1347603256edb54baf8cde30f55208f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  ObstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  WaterLayer:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!95 &2118857320
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118857306}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

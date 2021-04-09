@@ -17,11 +17,24 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private int startLine = 1;
     [SerializeField] private int lineCount = 3;
 
+    [SerializeField] private LayerMask GroundLayer;
+
+    private PlayerAnimationController animation=default;
+    private bool isGrounded;
+
     private int currentLine;
     private Coroutine moveCoroutine;
 
+    private void Awake()
+    {
+        this.isGrounded = true;
+        this.animation = this.GetComponent<PlayerAnimationController>();
+        if (this.animation == null) Debug.LogError("Player Animator is null at PlayerMovement Script");
+    }
+
     public void MoveRight() {
         if (this.currentLine != lineCount - 1) {
+            animation?.MoveRight();
             if (this.moveCoroutine != null) StopCoroutine(this.moveCoroutine);
             this.currentLine++;
             this.moveCoroutine = StartCoroutine(ChangeLine());
@@ -30,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
     public void MoveLeft() {
         if (this.currentLine != 0)
         {
+            animation?.MoveLeft();
             if (this.moveCoroutine != null) StopCoroutine(this.moveCoroutine);
             this.currentLine--;
             this.moveCoroutine = StartCoroutine(ChangeLine());
@@ -37,10 +51,16 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void Jump() {
-        this.GetComponent<Rigidbody>().velocity = Vector3.up* this.JumpPower;
+        animation?.Jump();
+        if (this.isGrounded)
+        {
+            this.isGrounded = false;
+            this.GetComponent<Rigidbody>().velocity = Vector3.up * this.JumpPower;
+        }
     }
 
     public void Dash() {
+        animation?.Dash();
         this.GetComponent<Rigidbody>().AddForce(Vector3.down * this.DashPower, ForceMode.VelocityChange);
     }
 
@@ -60,5 +80,26 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
         this.moveCoroutine = null;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        CheckGround();
+    }
+
+    private void CheckGround() {
+        RaycastHit hit;
+        float distance = 2f;
+        Vector3 dir = Vector3.down;
+
+        if (Physics.Raycast(transform.position, dir, out hit, distance, this.GroundLayer))
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
+        Debug.Log(isGrounded);
     }
 }

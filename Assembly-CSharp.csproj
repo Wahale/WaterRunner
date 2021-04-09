@@ -60,6 +60,7 @@
     <Compile Include="Assets\Scripts\Score.cs" />
     <Compile Include="Assets\Scripts\GoToEnd.cs" />
     <Compile Include="Assets\Scripts\MoveRoads.cs" />
+    <Compile Include="Assets\Scripts\Loading.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

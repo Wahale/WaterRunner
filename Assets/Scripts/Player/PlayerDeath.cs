@@ -17,7 +17,7 @@ public class PlayerDeath : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == ObstacleLayer) this.animator?.DeathObstacle();
-        if (collision.gameObject.layer == WaterLayer) this.animator?.DeathWater(); 
+        if (Mathf.Pow(2,collision.gameObject.layer) == ObstacleLayer.value) this.animator?.DeathObstacle();
+        if (Mathf.Pow(2,collision.gameObject.layer) == WaterLayer.value) this.animator?.DeathWater(); 
     }
 }

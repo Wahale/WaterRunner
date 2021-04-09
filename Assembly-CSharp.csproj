@@ -62,6 +62,8 @@
     <Compile Include="Assets\Scripts\Player\PlayerDeath.cs" />
     <Compile Include="Assets\Scripts\GoToEnd.cs" />
     <Compile Include="Assets\Scripts\MoveRoads.cs" />
+    <Compile Include="Assets\Scripts\Buff\BuffObject.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerBuffController.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Lean\READ ME.txt" />

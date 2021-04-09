@@ -19,11 +19,23 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private LayerMask GroundLayer;
 
-    private PlayerAnimationController animation=default;
+
+    private PlayerAnimationController animation = default;
     private bool isGrounded;
+    private bool _canJump, _isReverse;
 
     private int currentLine;
     private Coroutine moveCoroutine;
+
+    public bool CanJump {
+        get => _canJump;
+        set => _canJump = value;
+    }
+
+    public bool IsReverse {
+        get => _isReverse;
+        set => _isReverse = value;
+    }
 
     private void Awake()
     {
@@ -33,6 +45,10 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void MoveRight() {
+        if (this._isReverse) {
+            MoveLeft();
+            return;
+        }
         if (this.currentLine != lineCount - 1) {
             animation?.MoveRight();
             if (this.moveCoroutine != null) StopCoroutine(this.moveCoroutine);
@@ -41,6 +57,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     public void MoveLeft() {
+        if (this._isReverse) {
+            MoveRight();
+            return;
+        }
         if (this.currentLine != 0)
         {
             animation?.MoveLeft();
@@ -51,17 +71,29 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void Jump() {
-        animation?.Jump();
+        if (this._isReverse) {
+            Dash();
+            return;
+        }
+
         if (this.isGrounded)
         {
+            animation?.Jump();
             this.isGrounded = false;
             this.GetComponent<Rigidbody>().velocity = Vector3.up * this.JumpPower;
         }
     }
 
     public void Dash() {
-        animation?.Dash();
-        this.GetComponent<Rigidbody>().AddForce(Vector3.down * this.DashPower, ForceMode.VelocityChange);
+        if (this._isReverse) {
+            Jump();
+            return;
+        }
+        if (!this.isGrounded)
+        {
+            animation?.Dash();
+            this.GetComponent<Rigidbody>().AddForce(Vector3.down * this.DashPower, ForceMode.VelocityChange);
+        }
     }
 
     private IEnumerator ChangeLine() {
@@ -100,6 +132,5 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = false;
         }
-        Debug.Log(isGrounded);
     }
 }

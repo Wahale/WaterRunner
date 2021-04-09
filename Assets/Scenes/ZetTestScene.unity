@@ -933,7 +933,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1838878822}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: Dash
+        m_MethodName: DashAction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -994,7 +994,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1838878822}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: MoveLeft
+        m_MethodName: MoveLeftAction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1055,7 +1055,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1838878822}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: MoveRight
+        m_MethodName: MoveRightAction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1116,7 +1116,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1838878822}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: Jump
+        m_MethodName: JumpAction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

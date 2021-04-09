@@ -44,11 +44,32 @@ public class PlayerMovement : MonoBehaviour
         if (this.animation == null) Debug.LogError("Player Animator is null at PlayerMovement Script");
     }
 
-    public void MoveRight() {
-        if (this._isReverse) {
-            MoveLeft();
-            return;
-        }
+
+    public void DashAction()
+    {
+        if (this.IsReverse) Jump();
+        else Dash();
+    }
+
+    public void JumpAction()
+    {
+        if (this.IsReverse) Dash();
+        else Jump();
+    }
+
+    public void MoveRightAction() {
+        if (this.IsReverse) MoveLeft();
+        else MoveRight();
+    }
+
+    public void MoveLeftAction()
+    {
+        if (this.IsReverse) MoveRight();
+        else MoveLeft();
+    }
+
+
+    private void MoveRight() {
         if (this.currentLine != lineCount - 1) {
             animation?.MoveRight();
             if (this.moveCoroutine != null) StopCoroutine(this.moveCoroutine);
@@ -56,11 +77,8 @@ public class PlayerMovement : MonoBehaviour
             this.moveCoroutine = StartCoroutine(ChangeLine());
         }
     }
-    public void MoveLeft() {
-        if (this._isReverse) {
-            MoveRight();
-            return;
-        }
+
+    private void MoveLeft() {
         if (this.currentLine != 0)
         {
             animation?.MoveLeft();
@@ -70,13 +88,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void Jump() {
-        if (this._isReverse) {
-            Dash();
-            return;
-        }
-
-        if (this.isGrounded)
+    private void Jump() {
+        if (this.isGrounded && CanJump)
         {
             animation?.Jump();
             this.isGrounded = false;
@@ -84,11 +97,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void Dash() {
-        if (this._isReverse) {
-            Jump();
-            return;
-        }
+    private void Dash() {
         if (!this.isGrounded)
         {
             animation?.Dash();

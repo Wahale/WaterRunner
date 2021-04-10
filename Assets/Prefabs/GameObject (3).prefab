@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4304555459258991411}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EndPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1390979244271464576}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject (3)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ Transform:
   m_GameObject: {fileID: 6759604169139570243}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4.5, y: 1, z: 5}
   m_Children:
   - {fileID: 2162024151082587954}
   - {fileID: 4304555459258991411}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 1881887946624377476}
   - component: {fileID: 8311901840400198065}
   - component: {fileID: 642154463111368975}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: road
   m_Icon: {fileID: 0}

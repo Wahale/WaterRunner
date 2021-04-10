@@ -8,9 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
-    <ProjectGuid>{0339B1A7-1332-5949-E41D-0FA213856C13}</ProjectGuid>
+    <RootNamespace></RootNamespace>
+    <ProjectGuid>{A7B13903-3213-4959-E41D-0FA213856C13}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -58,10 +57,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Pool.cs" />
-    <Compile Include="Assets\Scripts\MoveRoads.cs" />
     <Compile Include="Assets\Scripts\GoToEnd.cs" />
+    <Compile Include="Assets\Scripts\MoveRoads.cs" />
+    <Compile Include="Assets\Shaders\HolyShift\Scripts\CheckForStandardAssets.cs" />
+    <Compile Include="Assets\Shaders\LowPolyWater_Pack\Scripts\LowPolyWater.cs" />
   </ItemGroup>
   <ItemGroup>
+     <None Include="Assets\Shaders\HolyShift\Shaders\FXWaterLowpoly.shader" />
+     <None Include="Assets\Shaders\LowPolyWater_Pack\Shaders\WaterShaded.shader" />
+     <None Include="Assets\Shaders\LowPolyWater_Pack\LowPoly Island\Credits.txt" />
+     <None Include="Assets\Shaders\HolyShift\readme.txt" />
+     <None Include="Assets\Shaders\HolyShift\Shaders\WaterInclude.cginc" />
     <Reference Include="UnityEngine">
       <HintPath>D:\Unity\2020\Unity\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

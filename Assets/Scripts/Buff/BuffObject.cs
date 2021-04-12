@@ -18,53 +18,53 @@ public class BuffObject : MonoBehaviour
 }
 
 
-[CanEditMultipleObjects]
-[CustomEditor(typeof(BuffObject))]
-public class BuffObjectEditor : Editor {
+//[CanEditMultipleObjects]
+//[CustomEditor(typeof(BuffObject))]
+//public class BuffObjectEditor : Editor {
 
-    private enum TimeDrop { Да,Нет}
-    public override void OnInspectorGUI()
-    {
-        BuffObject t = target as BuffObject;
+//    private enum TimeDrop { Да,Нет}
+//    public override void OnInspectorGUI()
+//    {
+//        BuffObject t = target as BuffObject;
 
-        GUILayout.BeginHorizontal();
-        GUILayout.Label("Тип :");
-        t.Type = (BuffType)EditorGUILayout.EnumPopup(t.Type);
-        GUILayout.EndHorizontal();
-        GUILayout.Space(15);
-        EditorGUILayout.BeginFoldoutHeaderGroup(true, "Настройки эффекта");
+//        GUILayout.BeginHorizontal();
+//        GUILayout.Label("Тип :");
+//        t.Type = (BuffType)EditorGUILayout.EnumPopup(t.Type);
+//        GUILayout.EndHorizontal();
+//        GUILayout.Space(15);
+//        EditorGUILayout.BeginFoldoutHeaderGroup(true, "Настройки эффекта");
         
-        if (t.Type == BuffType.SpeedIncrease) {
-            GUILayout.BeginHorizontal();
-            GUILayout.Label("Значение:");
-            t.Value = EditorGUILayout.FloatField(t.Value);
-            GUILayout.EndHorizontal();
+//        if (t.Type == BuffType.SpeedIncrease) {
+//            GUILayout.BeginHorizontal();
+//            GUILayout.Label("Значение :");
+//            t.Value = EditorGUILayout.FloatField(t.Value);
+//            GUILayout.EndHorizontal();
 
-            GUILayout.Space(7);
-        }
+//            GUILayout.Space(7);
+//        }
 
-        GUILayout.BeginHorizontal();
-        GUILayout.Label("Эффект применяется на время?  ");
-        t.IsTimeBuff = ((TimeDrop)EditorGUILayout.EnumPopup(t.IsTimeBuff ? TimeDrop.Да : TimeDrop.Нет) == TimeDrop.Да) ? true : false;
-        GUILayout.EndHorizontal();
-
-
-        if (t.IsTimeBuff) {
-            GUILayout.Space(7);
-
-            GUILayout.BeginHorizontal();
-            GUILayout.Label("Время эффекта(секунды):");
-            t.Time = EditorGUILayout.Slider(t.Time, 0f, 60f);
-            GUILayout.EndHorizontal();
-        }
-
-        EditorGUILayout.EndFoldoutHeaderGroup();
+//        GUILayout.BeginHorizontal();
+//        GUILayout.Label("Эффект применяется на время?  ");
+//        t.IsTimeBuff = ((TimeDrop)EditorGUILayout.EnumPopup(t.IsTimeBuff ? TimeDrop.Да : TimeDrop.Нет) == TimeDrop.Да) ? true : false;
+//        GUILayout.EndHorizontal();
 
 
+//        if (t.IsTimeBuff) {
+//            GUILayout.Space(7);
 
-        EditorUtility.SetDirty(t);
-    }
-}
+//            GUILayout.BeginHorizontal();
+//            GUILayout.Label("Время эффекта(секунды):");
+//            t.Time = EditorGUILayout.Slider(t.Time, 0f, 60f);
+//            GUILayout.EndHorizontal();
+//        }
+
+//        EditorGUILayout.EndFoldoutHeaderGroup();
+
+
+
+//        EditorUtility.SetDirty(t);
+//    }
+//}
 
 public enum BuffType { 
     JumpBlock,

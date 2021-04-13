@@ -58,20 +58,27 @@
   <ItemGroup>
     <Compile Include="Assets\Shaders\LowPolyWater_Pack\Scripts\LowPolyWater.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerBuffController.cs" />
-    <Compile Include="Assets\Scripts\Pool.cs" />
+    <Compile Include="Assets\Scripts\Road\Pool.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimationController.cs" />
     <Compile Include="Assets\Scripts\Buff\BuffObject.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerDeath.cs" />
-    <Compile Include="Assets\Scripts\GoToEnd.cs" />
+    <Compile Include="Assets\Scripts\Road\GoToEnd.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
-    <Compile Include="Assets\Scripts\MoveRoads.cs" />
+    <Compile Include="Assets\Scripts\Road\MoveRoads.cs" />
+    <Compile Include="Assets\Scripts\Loading.cs" />
+    <Compile Include="Assets\Scripts\Score.cs" />
+    <Compile Include="Assets\Scripts\Road\Curved.cs" />
+    <Compile Include="Assets\Scripts\UI.cs" />
   </ItemGroup>
   <ItemGroup>
-     <None Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Core\Shaders\Skybox Cubemap Extended.shader" />
      <None Include="Assets\Shaders\LowPolyWater_Pack\Shaders\WaterShaded.shader" />
      <None Include="Assets\Shaders\LowPolyWater_Pack\Shaders\Test.shader" />
      <None Include="Assets\Lean\READ ME.txt" />
      <None Include="Assets\Shaders\LowPolyWater_Pack\LowPoly Island\Credits.txt" />
+     <None Include="Assets\BrokenVector\LowPolyShaders\Shaders\LowPolyUnlitShader.shader" />
+     <None Include="Assets\Shaders\Shader.shader" />
+     <None Include="Assets\BrokenVector\LowPolyShaders\Shaders\LowPolyPBRShader.shader" />
+     <None Include="Assets\BrokenVector\LowPolyTreePack\README.txt" />
     <Reference Include="UnityEngine">
       <HintPath>D:\Unity\2020\Unity\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -636,6 +643,9 @@
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.Postprocessing.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
@@ -651,6 +661,9 @@
     <Reference Include="Unity.TextMeshPro">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Postprocessing.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Postprocessing.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
@@ -659,12 +672,6 @@
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Postprocessing.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -675,18 +682,6 @@
     <ProjectReference Include="LeanCommon.csproj">
       <Project>{F99C2418-CD2C-CE49-14F9-DFA5BF18EEDE}</Project>
       <Name>LeanCommon</Name>
-    </ProjectReference>
-    <ProjectReference Include="Boxophobic.Utils.Editor.csproj">
-      <Project>{E3497548-CCEB-8976-F827-D9C22B2EC6C9}</Project>
-      <Name>Boxophobic.Utils.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Boxophobic.SkyboxCubemapExtended.Editor.csproj">
-      <Project>{ED5D44B7-35B5-02C6-6333-2FA87EE49AB4}</Project>
-      <Name>Boxophobic.SkyboxCubemapExtended.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Boxophobic.Utils.Scripts.csproj">
-      <Project>{DDF43E6E-10A4-AB96-504C-BC9B10B3D17A}</Project>
-      <Name>Boxophobic.Utils.Scripts</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

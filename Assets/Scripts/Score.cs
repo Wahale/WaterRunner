@@ -3,19 +3,18 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
-    [SerializeField] Text textScore;
+    [SerializeField] private Text textScore,moneyText;
+    [SerializeField] private MoveRoads moveRoads;
 
     private int meters = 0;
     public int money = 0;
 
     private float counter = 0f;
     private float speedPlayer;
-    private string _text = ": Meters";
 
     private void Start()
     {
-        textScore.GetComponent<Text>();
-        speedPlayer = GameObject.FindGameObjectWithTag("Speed").GetComponent<MoveRoads>().speed;
+        speedPlayer = GameObject.Find("RoadParent").GetComponent<MoveRoads>().speed;
     }
 
     private void Update()
@@ -28,6 +27,7 @@ public class Score : MonoBehaviour
     {
         speedPlayer = newSpeed;
     }
+
     // Подбор монет
     public void Money(int _money)
     {
@@ -42,7 +42,10 @@ public class Score : MonoBehaviour
         {
             counter = 0f;
             meters++;
-            textScore.text = money.ToString() + " money : " + meters.ToString() + _text;
+            textScore.text =  meters.ToString() + ": Meters";
+            moneyText.text = " money : " + money.ToString();
+            if (meters % 20 == 0)
+                moveRoads.speed += 0.1f;
         }
     }
 }

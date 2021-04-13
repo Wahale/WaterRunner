@@ -24,6 +24,5 @@ public class Loading : MonoBehaviour
                 load = false;
             }
         }
-        
     }
 }

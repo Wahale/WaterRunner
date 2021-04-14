@@ -22,14 +22,16 @@ public class PlayerDeath : MonoBehaviour
         if (Mathf.Pow(2, collision.gameObject.layer) == ObstacleLayer.value)
         {
             this.animator?.DeathObstacle();
-            gameObject.GetComponent<Rigidbody>().useGravity = false;
+            //gameObject.GetComponent<Rigidbody>().useGravity = false;
+            moveRoads.speed = 0;
+            deathPanel?.SetActive(true);
         }
         if (Mathf.Pow(2, collision.gameObject.layer) == WaterLayer.value)
         {
             this.animator?.DeathWater();
-            gameObject.GetComponent<Rigidbody>().useGravity = false;
+            //gameObject.GetComponent<Rigidbody>().useGravity = false;
             moveRoads.speed = 0;
-            deathPanel.SetActive(true);
+            deathPanel?.SetActive(true);
         }
     }
 }

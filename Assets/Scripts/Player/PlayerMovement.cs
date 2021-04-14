@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private int lineCount = 3;
 
     [SerializeField] private LayerMask GroundLayer;
-
+    [HideInInspector][SerializeField] private bool UseAlternateTouchInput;
 
     private PlayerAnimationController animation = default;
     private bool isGrounded;
@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     private int currentLine;
     private Coroutine moveCoroutine;
+    private InputSwipe inputSwipe;
 
     public bool CanJump {
         get => _canJump;
@@ -40,8 +41,28 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         this.isGrounded = true;
+        this.CanJump = true;
         this.animation = this.GetComponent<PlayerAnimationController>();
+        this.inputSwipe = new InputSwipe();
+        this.currentLine = this.startLine;
         if (this.animation == null) Debug.LogError("Player Animator is null at PlayerMovement Script");
+    }
+
+    private void Update()
+    {
+        CheckGround();
+        if (this.UseAlternateTouchInput) {
+            this.inputSwipe.CheckPosition();
+            SwipeDirection dir = this.inputSwipe.GetSwipeDirection();
+            if (dir!=SwipeDirection.NONE) {
+                if (dir == SwipeDirection.UP) JumpAction();
+                if (dir == SwipeDirection.DOWN) DashAction();
+                if (dir == SwipeDirection.LEFT) MoveLeftAction();
+                if (dir == SwipeDirection.RIGHT) MoveRightAction();
+
+            }
+
+        }
     }
 
 
@@ -123,11 +144,6 @@ public class PlayerMovement : MonoBehaviour
         this.moveCoroutine = null;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        CheckGround();
-    }
-
     private void CheckGround() {
         RaycastHit hit;
         float distance = 2f;
@@ -142,4 +158,56 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
         }
     }
+
+}
+
+
+public class InputSwipe
+{
+    private Vector3 startPos, endPos;
+
+    public InputSwipe() {
+        startPos = Vector3.zero;
+        endPos = Vector3.zero;
+    }
+
+    public SwipeDirection GetSwipeDirection()
+    {
+        if (this.startPos!=Vector3.zero && this.endPos != Vector3.zero)
+        {
+            if (startPos.x > endPos.x && Mathf.Abs(startPos.y - endPos.y) < Mathf.Abs(startPos.x - endPos.x)) { Clear(); return SwipeDirection.LEFT; }
+            if (startPos.x < endPos.x && Mathf.Abs(startPos.y - endPos.y) < Mathf.Abs(startPos.x - endPos.x)) { Clear(); return SwipeDirection.RIGHT; }
+            if (startPos.y < endPos.y && Mathf.Abs(startPos.x - endPos.x) < Mathf.Abs(startPos.y - endPos.y)) { Clear(); return SwipeDirection.UP; }
+            if (startPos.y > endPos.y && Mathf.Abs(startPos.x - endPos.x) < Mathf.Abs(startPos.y - endPos.y)) { Clear(); return SwipeDirection.DOWN; }
+
+        }
+
+        return SwipeDirection.NONE;
+    }
+
+    private void Clear()
+    {
+        this.startPos = Vector3.zero;
+        this.endPos = Vector3.zero;
+    }
+    public void CheckPosition() {
+        if (Input.touches.Length > 0) {
+            if (Input.touches[0].phase == TouchPhase.Began) {
+                this.startPos = Input.touches[0].deltaPosition;
+            }
+
+            if (Input.touches[0].phase == TouchPhase.Ended)
+            {
+                this.endPos = Input.touches[0].deltaPosition;
+            }
+        }
+    }
+
+}
+
+public enum SwipeDirection { 
+    UP,DOWN,
+    LEFT,RIGHT,
+
+    NONE
 }
